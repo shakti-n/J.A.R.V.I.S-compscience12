@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JARVIS // CLASS 12 CS CORE</title><link rel="stylesheet" href="{{ url_for('static',filename='css/jarvis.css') }}"></head>
+<body><div class="scanlines"></div>
+<header class="topbar"><div class="brand"><span class="orb"></span><b>JARVIS</b><small>ACADEMIC INTELLIGENCE CORE</small></div>
+<nav><a class="active" href="/">COMMAND</a><a href="/flashcards">FLASHCARDS</a><a href="/knowledge">KNOWLEDGE</a></nav><div class="status"><i></i> ONLINE</div></header>
+<main class="shell">
+<section class="hero"><div class="hero-copy"><p class="eyebrow">PERSONAL STUDY AI // CLASS 12 COMPUTER SCIENCE</p>
+<h1>Good afternoon,<br><span>Divyanshi.</span></h1><p class="muted">{{ identity }}</p>
+<div class="command-box"><span class="prompt">JARVIS&gt;</span><input id="query" placeholder="Ask or speak: 'Explain recursion'..." autocomplete="off"><button id="mic" class="mic" onclick="toggleVoice()">🎙 MIC</button><button onclick="askJarvis()">EXECUTE</button></div>
+<div class="voice-status" id="voiceStatus">VOICE LINK READY · Click MIC to speak</div><div id="answer" class="answer hidden"></div>
+</div><div class="reactor" id="reactor"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="core"><b>J</b><small>ARVIS</small></div></div></section>
+<section class="grid stats"><div class="panel"><span>UNITS</span><strong>{{ stats.units }}</strong><small>syllabus sectors</small></div><div class="panel"><span>CHAPTERS</span><strong>{{ stats.chapters }}</strong><small>indexed chapters</small></div><div class="panel"><span>CONCEPTS</span><strong>{{ stats.concepts }}</strong><small>knowledge nodes</small></div><div class="panel"><span>FLASHCARDS</span><strong>{{ stats.flashcards }}</strong><small>active cards</small></div></section>
+<section class="panel syllabus"><div class="panel-head"><div><p class="eyebrow">KNOWLEDGE ARCHITECTURE</p><h2>17-CHAPTER CORE</h2></div><a href="/knowledge">MANAGE KNOWLEDGE →</a></div>
+{% for unit, chs in syllabus.items() %}<div class="unit"><div class="unit-head"><span>{{ unit }}</span><b>{{ chs|length }} CHAPTERS</b></div><div class="chapter-grid">{% for ch in chs %}<div class="chapter"><b>{{ "%02d"|format(loop.index + (0 if loop.index else 0)) }}</b><span>{{ ch }}</span></div>{% endfor %}</div></div>{% endfor %}
+</section>
+<section class="lower grid"><div class="panel identity"><p class="eyebrow">IDENTITY PROTOCOL</p><h2>JARVIS</h2><p>{{ identity }}</p><div class="signature">ORIGINAL BUILD // DIVYANSHI // 2026</div></div>
+<div class="panel"><p class="eyebrow">VOICE COMMANDS</p><h2>TRY SAYING</h2><ul class="commands"><li>“Explain recursion.”</li><li>“What is a primary key?”</li><li>“Teach me Chapter 14 SQL.”</li><li>“Who are you?”</li></ul></div></section>
+</main><script src="{{ url_for('static',filename='js/jarvis.js') }}"></script></body></html>
